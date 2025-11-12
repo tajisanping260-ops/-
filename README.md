@@ -190,6 +190,15 @@
                     },
                     body: JSON.stringify(requestData) // { "food_key": "rice" } を送信
                  })
+
+                fetch('http://127.0.0.1:5000/calculate', { // PythonサーバーのURL
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestData) // { "food_key": "rice" } を送信
+   
+                 })
                 // 取得した値をコンソールに出力して確認
                 console.log('--- ユーザー情報 ---');
                 console.log('身長:', height);
