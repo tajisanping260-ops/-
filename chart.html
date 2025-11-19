@@ -1,0 +1,45 @@
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <canvas id="radarChart" width="400" height="400"></canvas>
+
+             // 目安値
+            const recommended = {
+                energy: data.recommended.energy / 3,
+                carbs: data.recommended.carbs / 3,
+                fat: data.recommended.fat / 3,
+                vitaminA: data.recommended.vitaminA / 3,
+                vitaminB1: data.recommended.vitaminB1 / 3,
+                salt: data.recommended.salt / 3,
+                iron: data.recommended.iron / 3,  
+            };
+
+            const total = data.total;
+            const chartlabels = ['carbs', 'fat', 'vitaminA', 'vitaminB1', 'salt', 'iron'];
+            const ratio = chartlabels.map(label => total[label] / recommended[label]);
+
+            
+            // 前のチャートを破棄
+            if (window.radarChart) window.radarChart.destroy();
+
+            // 新しいチャート作成
+            window.radarChart = new Chart(document.getElementById("radarChart"), {
+                type: 'radar',
+                data: {
+                    labels: [ '炭水化物', '脂質', 'ビタミンA', 'ビタミンB1', '塩分', '鉄'],
+                    datasets: [{
+                        label: '目安比率 (1 = 目安値)',
+                        data: ratio,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: { r: { beginAtZero: true, max: 2 } }
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
