@@ -168,3 +168,6 @@ elif j == 2:
 m = (ih * 0.25) / 9#脂質量
 r = rounded_ih * 0.575 /4 #炭水化物量
 rounded_r= round(r, 0)  # 小数第2位まで四捨五入
+
+if __name__ == '__main__':
+    calorie.run(debug=True, port=5000)
